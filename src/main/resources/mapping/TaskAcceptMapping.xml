@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.design.automobile_sales_mall.mapper.TaskAcceptMapper">
+    <insert id="acceptTask">
+        insert into tb_task_accept(task_id, accept_user_id, accept_time, complete_time, is_complete, enable)
+        values
+        (
+          #{taskAccept.taskId}, #{taskAccept.acceptUserId}, #{taskAccept.acceptTime}, #{taskAccept.completeTime},
+          #{taskAccept.isComplete}, #{taskAccept.enable}
+        )
+    </insert>
+
+    <update id="updateAcceptTask">
+        update tb_task_accept set
+        <if test="map.isComplete != null and map.isComplete != 0">
+            is_complete = #{map.isComplete},
+            complete_time = DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%S')
+        </if>
+        <if test="map.enable != null and map.enable != 0">
+            ebable = #{enable}
+        </if>
+        where id = #{map.id}
+    </update>
+
+    <select id="acceptTaskList"  resultType="com.school.design.automobile_sales_mall.entity.dto.TaskAcceptDto">
+        select a.id, a.task_id, a.accept_time, a.is_complete, b.task_name, b.task_desc, b.charge,
+            b.publish_time, c.username as publishUser
+        from
+        (
+          select id, task_id, accept_time, is_complete from tb_task_accept where accept_user_id = #{userId} and is_complete = 2 and enable = 2
+        ) a,
+        (
+          select id, task_name, task_desc, charge, publish_time, publish_user_id from tb_task_publish
+        ) b,
+        (
+          select username, id from tb_user
+        ) c
+        where a.task_id = b.id and b.publish_user_id = c.id
+    </select>
+
+    <select id="getTaskId" resultType="java.lang.Integer">
+        select task_id from tb_task_accept where id = #{id}
+    </select>
+</mapper>
+

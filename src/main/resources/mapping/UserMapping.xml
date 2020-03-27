@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.school.design.automobile_sales_mall.mapper.UserMapper">
     <select id="getUserByName" parameterType="java.lang.String" resultType="User">
-        select * from user where username = #{userName}
+        select * from tb_user where username = #{userName}
     </select>
 
     <insert id="addUser">
-        insert into user (username, password, phone, email)
+        insert into tb_user (username, password, phone, email)
         value
-        (#{user.userName}, #{user.password}, #{user.phone}, #{user.email})
+        (#{user.username}, #{user.password}, #{user.phone}, #{user.email})
     </insert>
 </mapper>
 

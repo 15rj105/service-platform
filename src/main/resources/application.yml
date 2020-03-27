@@ -3,17 +3,29 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/automobile-sales-mall
+    url: jdbc:mysql://129.204.69.51:3306/service_platform
     username: root
-    password: jzl123456
+    password: hY434513
     driver-class-name: com.mysql.jdbc.Driver
   # SpringMVC视图解析器配置
   mvc:
     view:
-      prefix: /WEB-INF/jsp/
+      prefix: /META-INF/resources/
       suffix: .jsp
 
-mybatis:
+#mybatis:
+#  mapper-locations: classpath:mapping/*.xml
+#  type-aliases-package: com.school.design.automobile_sales_mall.entity
+
+mybatis-plus:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.school.design.automobile_sales_mall.entity
 
+
+logging:
+  level:
+    com:
+      school:
+        design:
+          automobile_sales_mall:
+            mapper: debug

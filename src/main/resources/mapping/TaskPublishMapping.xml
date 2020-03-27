@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.design.automobile_sales_mall.mapper.TaskPublishMapper">
+    <select id="selectTaskPage" resultType="taskPublish">
+        select a.*, b.username
+        from
+        (
+          select * from tb_task_publish where enable = 1 and is_accept = 2 and publish_user_id != #{userId} ${ew.customSqlSegment}
+        ) a,
+        (
+          select username, id from tb_user
+        ) b
+        where a.publish_user_id = b.id
+        ${ew.customSqlSegment}
+    </select>
+
+    <update id="updateTask">
+        update tb_task_publish set
+        <if test="map.isAccept != null and map.isAccept != 0">
+            is_accept = #{map.isAccept}
+        </if>
+        <if test="map.isComplete != null and map.isComplete != 0">
+            is_complete = #{map.isComplete}
+        </if>
+        where id = #{map.taskId}
+    </update>
+</mapper>
+

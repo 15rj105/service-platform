@@ -4,9 +4,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>注册失败页</title>
+    <title>任务提交失败</title>
 </head>
 <body >
-    注册失败, ${requestScope.msg}, <a href="register.action" color=blue>返回注册</a>
+    ${requestScope.msg}, <a href="acceptList.action" color=blue>返回任务承接页</a>
 </body>
 </html>
