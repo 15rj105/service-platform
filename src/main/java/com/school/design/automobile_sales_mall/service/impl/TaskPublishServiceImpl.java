@@ -44,12 +44,7 @@ public class TaskPublishServiceImpl implements TaskPublishService {
 
     @Override
     @Transactional
-    public IPage<TaskPublish> taskList(Integer pageNum, Integer pageSize, String orderField, String sort, Integer userId) {
-        pageNum = 1;
-        pageSize = 10;
-        orderField = "publish_time";
-        sort = "ASC";
-
+    public IPage<TaskPublish> taskList(Integer pageNum, Integer pageSize, String orderField, String sort, Integer catalog) {
         IPage<TaskPublish> page = new Page<>(pageNum, pageSize);
         QueryWrapper<TaskPublish> queryWrapper = new QueryWrapper<>();
         if (sort.equals("ASC")) {
@@ -58,7 +53,7 @@ public class TaskPublishServiceImpl implements TaskPublishService {
             queryWrapper.orderByDesc(orderField);
         }
 
-        IPage<TaskPublish> iPage = taskPublishMapper.selectTaskPage(page, queryWrapper, userId);
+        IPage<TaskPublish> iPage = taskPublishMapper.selectTaskPage(page, queryWrapper, catalog);
         return iPage;
     }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Mapper
 public interface TaskPublishMapper extends BaseMapper<TaskPublish> {
-    IPage<TaskPublish> selectTaskPage(IPage<TaskPublish> page, @Param(Constants.WRAPPER) QueryWrapper<TaskPublish> queryWrapper, @Param("userId") Integer userId);
+    IPage<TaskPublish> selectTaskPage(IPage<TaskPublish> page, @Param(Constants.WRAPPER) QueryWrapper<TaskPublish> queryWrapper, @Param("catalog") Integer catalog);
 
     int updateTask(@Param("map") Map map);
 }

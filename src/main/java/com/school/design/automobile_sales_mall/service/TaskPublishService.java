@@ -10,5 +10,5 @@ import java.util.List;
 public interface TaskPublishService {
     boolean taskPublish(TaskPublish taskPublish, HttpServletRequest request);
 
-    IPage<TaskPublish> taskList(Integer pageNum, Integer pageSize, String orderField, String sort, Integer userId);
+    IPage<TaskPublish> taskList(Integer pageNum, Integer pageSize, String orderField, String sort, Integer catalog);
 }

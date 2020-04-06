@@ -5,7 +5,7 @@
         select a.*, b.username
         from
         (
-          select * from tb_task_publish where enable = 1 and is_accept = 2 and publish_user_id != #{userId} ${ew.customSqlSegment}
+          select * from tb_task_publish where enable = 1 and is_accept = 2 and catalog = #{catalog} ${ew.customSqlSegment}
         ) a,
         (
           select username, id from tb_user
